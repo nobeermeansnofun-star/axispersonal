@@ -1,4 +1,25 @@
+import { useState } from "react";
+
 export default function App() {
+  const [tasks, setTasks] = useState([
+    { text: "Preparar presentación", done: false },
+    { text: "Responder correos", done: false },
+  ]);
+
+  const [newTask, setNewTask] = useState("");
+
+  const addTask = () => {
+    if (!newTask) return;
+    setTasks([...tasks, { text: newTask, done: false }]);
+    setNewTask("");
+  };
+
+  const toggleTask = (index) => {
+    const updated = [...tasks];
+    updated[index].done = !updated[index].done;
+    setTasks(updated);
+  };
+
   return (
     <div className="app-container">
 
@@ -6,59 +27,60 @@ export default function App() {
       <div className="header">
         <div>
           <div className="title">AXIS</div>
-          <div className="subtitle">Hola, Usuario 🚀</div>
+          <div className="subtitle">Hola 🚀</div>
         </div>
       </div>
 
-      {/* CARD NIVEL */}
+      {/* INPUT NUEVA TAREA */}
       <div className="card">
-        <div>Nivel 3</div>
-        <div className="progress-bar">
-          <div className="progress"></div>
-        </div>
-        <div style={{ marginTop: 8, opacity: 0.6 }}>
-          1,750 XP / 2,500 XP
-        </div>
+        <input
+          value={newTask}
+          onChange={(e) => setNewTask(e.target.value)}
+          placeholder="Nueva tarea..."
+          style={{
+            width: "100%",
+            padding: "10px",
+            borderRadius: "10px",
+            border: "none",
+            outline: "none",
+            marginBottom: "10px"
+          }}
+        />
+        <button
+          onClick={addTask}
+          style={{
+            width: "100%",
+            padding: "10px",
+            borderRadius: "10px",
+            border: "none",
+            background: "#f4c542",
+            fontWeight: "bold"
+          }}
+        >
+          Agregar tarea
+        </button>
       </div>
 
-      {/* TAREAS */}
+      {/* LISTA */}
       <div className="section">
         <div className="section-title">Mis tareas</div>
 
-        <div className="task">
-          <div className="task-left">
-            <div className="circle"></div>
-            <div>
-              <div className="task-text">Preparar presentación</div>
-              <div className="task-sub">Hoy 2:00 PM</div>
+        {tasks.map((task, index) => (
+          <div
+            key={index}
+            className={`task ${task.done ? "completed" : ""}`}
+            onClick={() => toggleTask(index)}
+          >
+            <div className="task-left">
+              <div className="circle"></div>
+              <div className="task-text">{task.text}</div>
             </div>
           </div>
-        </div>
-
-        <div className="task">
-          <div className="task-left">
-            <div className="circle"></div>
-            <div>
-              <div className="task-text">Responder correos</div>
-              <div className="task-sub">Hoy</div>
-            </div>
-          </div>
-        </div>
-
-        <div className="task completed">
-          <div className="task-left">
-            <div className="circle"></div>
-            <div>
-              <div className="task-text">Hacer ejercicio</div>
-              <div className="task-sub">Mañana</div>
-            </div>
-          </div>
-        </div>
-
+        ))}
       </div>
 
       {/* BOTÓN */}
-      <div className="fab">+</div>
+      <div className="fab" onClick={addTask}>+</div>
 
       {/* NAVBAR */}
       <div className="navbar">
