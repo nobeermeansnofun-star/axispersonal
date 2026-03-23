@@ -6,15 +6,151 @@
 
 html, body, #root {
   height: 100%;
-  width: 100%;
-  font-family: system-ui, -apple-system, sans-serif;
-  background: grey;
-  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #0f0f14;
+  color: #fff;
 }
 
+/* Contenedor tipo iPhone */
 .app-container {
-  max-width: 480px;
+  max-width: 420px;
   margin: 0 auto;
   min-height: 100vh;
   padding: 16px;
+  padding-bottom: 90px;
+  background: radial-gradient(circle at top, #1a1a22, #0f0f14);
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: 16px;
+  opacity: 0.6;
+}
+
+/* CARD (nivel XP) */
+.card {
+  background: linear-gradient(135deg, #2a2a35, #1a1a22);
+  border-radius: 20px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.progress-bar {
+  height: 8px;
+  background: #333;
+  border-radius: 10px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  width: 70%;
+  background: #f4c542;
+  border-radius: 10px;
+}
+
+/* SECCIÓN TAREAS */
+.section {
+  margin-top: 20px;
+}
+
+.section-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* ITEM TAREA */
+.task {
+  background: #1a1a22;
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.circle {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #888;
+  border-radius: 50%;
+}
+
+.task.completed .circle {
+  background: #8bc34a;
+  border: none;
+}
+
+.task-text {
+  font-size: 15px;
+}
+
+.task-sub {
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+/* BOTÓN + */
+.fab {
+  position: fixed;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #f4c542;
+  color: black;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 420px;
+  max-width: 100%;
+  height: 70px;
+  background: #1a1a22;
+  border-top: 1px solid #2a2a35;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nav-item {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.nav-item.active {
+  color: #f4c542;
+  opacity: 1;
 }
